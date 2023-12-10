@@ -1,0 +1,3 @@
+public double avg(){
+    return kurse.stream().filter(x -> x.ects > 5).mapToInt(x -> x.gebuehr).sum() / kurse.size();
+}

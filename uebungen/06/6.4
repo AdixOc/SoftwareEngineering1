@@ -1,0 +1,30 @@
+@startuml
+title Zustandsdiagramm Parkhaus-Ticket
+
+[*] --> New
+
+New : entry / Login
+New --> New : [login fail]
+New --> Bezahlen
+Bezahlen : entry / kostenBerechnen 
+Bezahlen --> Visa
+Visa : entry / abfrageDaten
+Visa --> Gedruckt
+Gedruckt : entry / Drucken
+
+Gedruckt --> [*]
+@enduml
+@startuml
+title Zustandsdiagramm Buchung in CIS
+state fork_state <<fork>>
+state join_state <<join>>
+
+New --> fork_state 
+fork_state  --> CheckVisa : [ international conference ] 
+CheckVisa : do / checking Visum
+CheckVisa --> join_state : [  Visum OK ]
+fork_state --> join_state : [ national conference ]
+join_state--> Buchung : [*]
+Buchung --> Bezahlung : [kosten]
+
+@enduml

@@ -1,0 +1,16 @@
+@startuml
+
+[*] --> BekommtBuchung
+BekommtBuchung : Check Date
+BekommtBuchung -down-> IntConfBuch
+IntConfBuch -down-> UeberprueftVisa
+UeberprueftVisa -> FinalisiertBuchung
+UeberprueftVisa : API AuswaertigesAmt
+BekommtBuchung -down-> NatConfBuch
+NatConfBuch -> FinalisiertBuchung
+FinalisiertBuchung -> DrucktTicket
+FinalisiertBuchung : Buchungsdaten persistieren
+FinalisiertBuchung : Zahlung abwickeln
+DrucktTicket -> [*]
+
+@enduml

@@ -1,0 +1,3 @@
+public int sumKurse(){
+    return kurse.stream().map(k-> k.gebuehr).mapToInt(Integer::intValue).sum();
+}

@@ -1,0 +1,33 @@
+  Betreiber --> (Umsatz erkennen) #green
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+skinparam backgroundcolor LightBlue
+skinparam actorStyle Hollow
+actor Autofahrer #blue
+actor Betreiber #palegreen
+actor Mitarbeiter #red
+rectangle Parkhaus {
+  Autofahrer --> (Parkticket nehmen) #green 
+  Autofahrer --> (Ticket bezahlen) #green
+  (Parkticket nehmen) .> (Ticket bezahlen) : <<include>> 
+  Betreiber --> (Mitarbeiter Loeschen/Bearbeiten) #green
+  (Mitarbeiter Loeschen/Bearbeiten) --> Mitarbeiter #green
+  Autofahrer --> (Informationen einsehen) #green
+  Mitarbeiter --> (Parkdauer Kunden einsehen) #green
+  Betreiber --> (Umsatz erkennen) #green
+  Betreiber --> (Historische Auslastung einsehen) #green
+
+  (Hilfe erhalten) .> (Parkticket nehmen) #blue : <<extends>>
+  (Hilfe erhalten) .> (Ticket bezahlen) #blue : <<extends>> 
+  (Hilfe erhalten) --> Mitarbeiter #green
+
+  (freie Parkplaetze erkennen) .> (Informationen einsehen) #blue : <<extend>>
+  (Kosten-pro-Stunde einsehen) .> (Informationen einsehen) #blue : <<extend>>
+  (Oeffnungszeiten erkennen) .> (Informationen einsehen) #blue : <<extend>>
+  (Parkdauer Kunden einsehen) .> (Informationen einsehen) #blue : <<extends>>
+  (Umsatz erkennen) .> (Informationen einsehen) #blue : <<extends>>
+  (Historische Auslastung einsehen) .> (Informationen einsehen) #blue : <<extends>>
+
+}
+@enduml

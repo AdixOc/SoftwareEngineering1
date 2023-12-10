@@ -1,0 +1,2 @@
+Oft akkumulieren wir verschiedene Daten zu einer Liste oder direkt zu einem konkretem Datentypen.
+Hier könnte man sehr gut die StreamAPI einsetzen.

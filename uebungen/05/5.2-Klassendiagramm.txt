@@ -1,0 +1,34 @@
+@startuml
+skinparam classAttributeIconSize 0
+skinparam backgroundcolor Beige
+
+class Kunde {
+  +informationsanzeige()
+  +anrufStart(MitarbeiterID)
+  +positiveRueckmeldung()
+}
+
+class Ticketanzeige {
+  +ticketAkzeptiert()
+}
+
+class TicketController{
+  +TicketGezogen(id)
+}
+
+class MitarbeiterSuche{
+  +support()
+  +supportAkzeptiert()
+}
+
+class Mitarbeiter{
+  +supportAnfrage()
+}
+
+Kunde - Ticketanzeige : ruft ab >
+Ticketanzeige - TicketController : benutzt >
+Kunde - MitarbeiterSuche : bedienen >
+MitarbeiterSuche - Mitarbeiter : anfragen >
+Mitarbeiter - MitarbeiterSuche : bestaetigen >
+
+@enduml

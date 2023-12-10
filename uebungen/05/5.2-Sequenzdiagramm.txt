@@ -1,0 +1,25 @@
+@startuml
+actor Kunde
+boundary Ticketanzeige
+control TicketController
+boundary MitarbeiterSuche
+actor Mitarbeiter
+
+Ticketanzeige -> Kunde : informationsanzeige()
+alt Parkautomat ist defekt
+Kunde -> MitarbeiterSuche : support()
+MitarbeiterSuche -> Mitarbeiter : supportAnfrage()
+Mitarbeiter -> MitarbeiterSuche : supportAkzeptiert(MitarbeiterID)
+MitarbeiterSuche -> Kunde : anrufStart(MitarbeiterID)
+end
+
+note left #orange : Fuer den Ausnahmefall, dass der Parkautomat nicht das Ticket ausgibt, wie beschrieben im Use Case Templet 
+
+Kunde -> Ticketanzeige : zieheTicket()
+Ticketanzeige -> TicketController : TicketGezogen(id)
+TicketController -> Ticketanzeige : ticketAkzeptiert()
+Ticketanzeige -> Kunde : positiveRueckmeldung()
+note right #lightblue : Es wird dem Kunden angezeigt, dass das Ticket-ziehen erfolgreich war und der Kunde kann somit ohne Unsicherheit das Parkhaus benutzen
+
+
+@enduml

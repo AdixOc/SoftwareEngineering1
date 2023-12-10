@@ -1,0 +1,14 @@
+Postleitzahl
+\d{5}
+telefonnummer
+(\d{4,5})([-])?(\d{6,10})
+Kennzeichen
+(([A-Z]){1,3}\s){2}((\d{3}[E])|(\d{3,4}))
+Email
+\b[\w\.-]+[@]\w+[.]\w{2}
+URL
+\b[\w\.-]+\w+[.]\w{2}(/\b[\w\-\d]+)*
+Kommentar
+\/\/( )?\b[\w\d\s\.-]+
+Klassenname
+class( )\b[\w]+

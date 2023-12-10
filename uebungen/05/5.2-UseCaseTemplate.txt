@@ -1,0 +1,16 @@
+Name: Der Kunde sollte die Möglichkeit haben, sich ein Parkticket nehmen zu koennen
+
+Akteure: Kunde, Mitarbeiter, Ticketanzeige, TicketController, MitarbeiterSuche
+
+Vorbedingung: Kunde ist innerhalb der Öffnungszeiten am Parkhaus
+
+Standardschritte: 
+Kunde kommt am Parkhaus an
+Kunde kann den Parkautomaten ohne Probleme bedienen
+Kunde entnimmt das Ticket
+
+Ausnahmefälle: Parkautomat gibt das Ticket nicht aus
+
+Nachbedingung: Der Kunde sollte dann die Möglichkeit haben in das Parkhaus zu fahren
+
+Qualitätsanforderungen: Dieser Vorgang sollte zügig erfolgen. Das ist besonders wichtig, da eventuell mehrere Autofahrer zur selben Zeit das Parkhaus benutzen möchten und die Wartezeit nicht zu lang sein sollte.

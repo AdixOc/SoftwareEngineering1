@@ -1,0 +1,16 @@
+public int sumKurse(){
+      int summe = kurse.stream().mapToInt(Kurs -> Kurs.gebühr).reduce(0, 
+      (sum,gebühr) -> sum +gebühr));
+      return summe;
+}
+
+public int sumStudenten() {
+    List<Kurs> tmp = studenten.stream().filter(Student -> Student.isBerufstätig == true).map(Student -> Student.kursBelegung().flatMap(listContainer -> listContainer.stream()).collect(Collectors.toList()),
+        int summe = (tmp.stream().mapToInt(Kurs -> Kurs.gebühr).reduce(0,(sum,gebühr) -> sum + gebühr));
+return summe;
+}
+
+public double avg() {
+int avg = kurse.stream().filter(Kurse -> Kurs.ECTS >5).filter(Kurs ->Kurs.hatZertifikat == true).mapToInt(Kurs -> Kurs.gebühr).reduce(0,(sum,gebühr) -> sum +
+ gebühr)) / (kurse.stream().filter(Kurs -> Kurs.ECTS > 5).filter(Kurs -> Kurs.hatZertifikat == true).collect(Collectors.toList())).size();
+return avg;

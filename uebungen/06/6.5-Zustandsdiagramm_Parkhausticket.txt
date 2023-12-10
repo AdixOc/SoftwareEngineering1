@@ -1,0 +1,37 @@
+@startuml
+skinparam backgroundcolor Bisque
+title __Zustandsdiagramm Parkhaus-Ticket__
+[*] --> wartend
+
+wartend #Technology --> angefordert : Anforderung
+wartend : do / Willkommensnachricht anzeigen
+note left : Hierdurch indirekt zeigen, dass alles richtig funktioniert
+
+angefordert : entry / Kunde registrieren
+angefordert : do / Kunde eintragen
+angefordert #Technology -> gedruckt : drucken
+note top : Es wird in gedruckt geblieben, bis das Ticket gezogen wird
+
+gedruckt : do / Ticket ausgeben
+gedruckt : do / Hinweis anzeigen
+gedruckt : event [Ticket noch nicht gezogen] / Hinweis weiter anzeigen
+gedruckt : event [Ticket entnommen] / Bestaetigung anzeigen
+gedruckt #Technology -> berechnet : Berechnung
+
+berechnet : entry : Kundenidentifikation aus Ticket entnehmen
+berechnet : do / berechne Preis
+berechnet : do / stelle Preis dar
+note top : Jeweilige Kundenidentifikation muss entnommen werden, bevor der Preis berechnet werden kann
+berechnet #Technology -> bezahlen : Bezahlung
+
+
+bezahlen : entry / Geld zaehlen
+bezahlen : event [eingegebenes Geld > Preis] / Rueckgeld ausgeben und Schranke oeffnen
+bezahlen : event [eingegebenes Geld < Preis] / Hinweis anzeigen und warten
+bezahlen : event [passendes Geld] / Schranke oeffnen
+bezahlen : exit : Daten zu Datenbank schicken
+note top : 3 conditions, da bei zu weniger, bei zu viel oder bei genau richtiger Bezahlung unterschiedliche Vorgaenge noetig sind
+
+bezahlen #Technology --> [*]
+
+@enduml

@@ -1,0 +1,45 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+actor user
+
+rectangle AuswaertigesAmt {
+  (check visa)
+}
+
+rectangle CIS {
+  rectangle Notification {
+    user -- (filter)
+    (filter) .> (Send email) : <<controls>>
+    (Send email) .> user
+  }
+
+  rectangle Login {
+    user -- (register)
+    user -- (login)
+    (register) .> (login) : <<login nach register>>
+  }
+
+  rectangle Booking {
+    user -- (conference)
+    (conference) .> (international)
+    (international) .> (check visa) : <<check for correct visa>>
+    (conference) .> (national)
+  }
+
+  rectangle Payments {
+    (national) .> (pay)
+    rectangle HypoBank {
+      (pay with last schrift)
+    }
+    rectangle EasyCard {
+      (pay with credit card)
+    }
+    (pay) -- (pay with last schrift)
+    (pay) .> (pay with credit card)
+    (check visa) .> (pay) : <<Valid Visa>>
+    (check visa) .> user : Couldn't process Bokking. Invalid Visa
+  }
+}
+
+@enduml

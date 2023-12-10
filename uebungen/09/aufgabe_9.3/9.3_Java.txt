@@ -1,0 +1,53 @@
+package de.hbrs.team22.parkhaus_projekt;
+
+public abstract class StatistikenGemeinsamkeiten {
+
+    final public void statistikenBerechnen(double[] arrayPreis, double[] arrayParkDauer) { // Die finale Schablonenmethode, benutzt Einschubmethoden
+        durchschnittMethode(arrayPreis);
+        durchschnittMethode(arrayPreis);
+        durchschnittMethode(arrayParkDauer);
+        durchschnittMethode(arrayParkDauer);
+    }
+
+
+
+    /*
+    Nun die Einschubmethoden, welche abstract und protected sind.
+    Als Parameter werden double[] arrays genutzt
+
+    SummeMethode, womit dann über eine bestimmte Zeit (mit den jeweiligen Werten in dem Zeitraum), wie zum Beispiel für
+    einen Tag, die Summe wichtiger Werte berechnet werden kann
+     */
+    protected abstract double durchschnittMethode(double[] array);
+    protected abstract double summeMethode(double[] array);
+
+}
+
+package de.hbrs.team22.parkhaus_projekt;
+
+public class statistikKonkreteKlasse extends StatistikenGemeinsamkeiten{
+
+    /*
+    Nun die konkrete Klasse, welche die Einschubmethoden implementiert
+    */
+
+
+    @Override
+    protected double durchschnittMethode(double[] array) {
+        double erg=0;
+        for(int i=0; i<array.length; i++) {
+            erg = erg + array[i];
+        }
+        erg=erg/array.length;
+        return erg;
+    }
+
+    @Override
+    protected double summeMethode(double[] array) {
+        double erg=0;
+        for(int i=0; i<array.length; i++) {
+            erg = erg+array[i];
+        }
+        return erg;
+    }
+}

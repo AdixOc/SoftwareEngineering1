@@ -1,0 +1,67 @@
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import org.junit.jupiter.api.Test;
+
+import java.io.StringReader;
+
+
+import static org.junit.jupiter.api.Assertions.*;
+
+class PartielleOrdnungTest {
+
+    @Test
+    void testPartielleOrdnung() {
+        PartielleOrdnung p = PartielleOrdnung.studentLife();
+        var it = p.iterator();
+        assertEquals("Aufstehen", it.next());
+        assertEquals("Frühstücken", it.next());
+        assertEquals("Kaffeetrinken", it.next());
+        assertEquals("Lernen", it.next());
+    }
+
+    @Test
+    void jsonAufgabeTest(){
+        String json = """
+                [
+                  {
+                    "nummer1": 34,
+                    "nummer2": 980,
+                    "nummern": [
+                      896
+                    ]
+                  },
+                  {
+                    "nummer1": 35,
+                    "nummer2": 409,
+                    "nummern": [
+                      243
+                    ]
+                  },
+                  {
+                    "nummer1": 22,
+                    "nummer2": 281,
+                    "nummern": [
+                      443
+                    ]
+                  }
+                ]""";
+
+        GsonBuilder gb = new GsonBuilder();
+        //  Deserialize json with gson
+        var gson = gb.create();
+        var list = gson.fromJson(json, JsonArray.class);
+        assertEquals(6, list.size());
+        assertEquals(34, list.get(0).getAsJsonObject().get("nummer1").getAsInt());
+        assertEquals(980, list.get(0).getAsJsonObject().get("nummer2").getAsInt());
+        assertEquals(1, list.get(0).getAsJsonObject().get("nummern").getAsJsonArray().size());
+        assertEquals(896, list.get(0).getAsJsonObject().get("nummern").getAsJsonArray().get(0).getAsInt());
+        assertEquals(35, list.get(1).getAsJsonObject().get("nummer1").getAsInt());
+        assertEquals(409, list.get(1).getAsJsonObject().get("nummer2").getAsInt());
+        assertEquals(1, list.get(1).getAsJsonObject().get("nummern").getAsJsonArray().size());
+        assertEquals(243, list.get(1).getAsJsonObject().get("nummern").getAsJsonArray().get(0).getAsInt());
+        assertEquals(22, list.get(2).getAsJsonObject().get("nummer1").getAsInt());
+        assertEquals(525, list.get(3).getAsJsonObject().get("nummer2").getAsInt());
+    }
+
+}

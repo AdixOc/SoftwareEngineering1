@@ -1,0 +1,3 @@
+public int sumStudenten(){
+    return students.stream().filter(x -> x.istBerufsfaehig).map(x -> x.kurse).mapToInt(x -> x.stream().mapToInt(y -> y.gebuehr).sum()).sum();
+}

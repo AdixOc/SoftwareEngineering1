@@ -1,0 +1,47 @@
+@startuml
+actor Kunde
+actor Mitarbeiter
+actor Betreiber
+skinparam backgroundcolor lightblue
+skinparam actorStyle awesome
+
+rectangle Parkhaus{
+  boundary Ticketanzeige
+  boundary Oeffnungszeitenanzeige
+  note bottom #Lavender : Hoher Fokus im Parkhaus auf die uerbsichtliche Anzeige von wichtigen Informationen wie Oeffnungszeiten und freie Parkplaetze
+  boundary Parkplaetzeanzeige
+  boundary Preisanzeige
+  boundary MitarbeiterSuche
+  note top #Lavender : Der Kunde kann manuell bei Problemen oder Fragen Mitarbeiter zu Hilfe holen
+  boundary Finanzanzeige
+  boundary Auslastunganzeige
+  
+  entity KundenInfo
+  entity FinanzielleInfo
+
+  control FinanzController
+  control TicketController
+  control BetriebsController
+  control MitarbeiterController
+
+  Kunde -- Ticketanzeige
+  Kunde -- Oeffnungszeitenanzeige
+  Kunde -- Parkplaetzeanzeige
+  Kunde -- Preisanzeige
+  Mitarbeiter -- MitarbeiterSuche
+  Betreiber -- Finanzanzeige
+  Kunde -- MitarbeiterSuche
+  Betreiber -- Auslastungsanzeige
+  note left #Lavender : Einsehen historischer Auslastung von grosser Interesse fuer den Betrieb
+  
+  TicketController ..> Ticketanzeige
+  TicketController ..> Preisanzeige
+  BetriebsController ..> Parkplaetzeanzeige
+  FinanzController ..> FinanzielleInfo
+  MitarbeiterController ..> MitarbeiterSuche
+  FinanzController ..> Finanzanzeige
+  BetriebsController ..> Oeffnungszeitenanzeige
+  BetriebsController ..> KundenInfo
+  FinanzController ..> Auslastunganzeige
+}
+@enduml

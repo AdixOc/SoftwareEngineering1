@@ -1,0 +1,25 @@
+@startuml
+skinparam classAttributeIconSize 0
+class TopSortIterator {
+  Car -- Person : < owns
+  -nodes: Nodes
+  -cursor: Node
+  boolean hasNext()
+  Node next()
+}
+class Nodes {
+  -allNodes: Node[]
+  Node addNode(String value, String nextValue)
+  void removeNode(Node node)
+  Node findNode(String value)
+  Node[] findAllNodesWhereNodeIsNext(Node node)
+  Node findFirstNodeWhereThereIsNoPrevious()
+}
+class Node {
+  -value: String
+  -prev: Node[]
+  -next: Node[]
+}
+TopSortIterator <-- Nodes
+Nodes <-- Node
+@enduml

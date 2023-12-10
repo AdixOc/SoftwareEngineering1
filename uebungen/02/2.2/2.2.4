@@ -1,0 +1,20 @@
+Aufgabe 2.2.4 
+
+-> Algorithmus als Pseudocode
+
+isWellSorted: 
+
+HashSet mit erledigten Tasks erstellen
+falls Sequenz leer: 
+	Exception werfen
+
+Durch die Sequenz iterieren	
+	momentanen/jeweiligen Task anschauen und Liste der Abhängigkeiten	
+	hierzu erstellen:
+
+	Diese nun iterieren:
+		 false zurückgeben falls eines der Tasks nicht Teil der erledigten Tasks ist
+
+	Ansonsten HashSet erweitern mit momentanem Task
+
+Nach erfolgreichem Iterieren true zurückgeben

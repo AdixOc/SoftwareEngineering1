@@ -1,0 +1,11 @@
+Was ist das composite pattern?
+
+Das Composite Pattern ordnet Objekte in einer Baumstruktur an dabei können Elemente beliebig viele Kind Elemente enthalten.
+
+Elemente können nur zwei Kind Elemente enthalten wie in einem binärbaum.
+
+Composite pattern ist nicht ein binärbaum sondern ein baum dessen nodes beliebig viele child nodes enthalten kann
+
+Jede node muss anders behandelt werden
+
+Wir können jede Node exakt gleich behandeln, das ist der sinn hinter dem composite pattern
